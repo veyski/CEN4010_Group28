@@ -19,9 +19,7 @@ public class AuthorController {
     // addAuthor adds an object to the author table
     @PostMapping("/addAuthor")
     public Author postDetails(@RequestBody Author author) {
-        if(author.getAuthorName() == null){
-            System.out.println("Invalid Author name");
-        }
+
         return authorService.saveDetails(author);
 
     }

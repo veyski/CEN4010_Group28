@@ -1,10 +1,10 @@
 package com.geekText.geekText.Repository;
 
-import com.geekText.geekText.Entity.Customer;
+import com.geekText.geekText.Entity.Wishlist;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface CustomerRepo extends JpaRepository<Customer, Integer> {
+public interface WishlistRepo extends JpaRepository<Wishlist, Integer> {
 
 }

@@ -7,15 +7,15 @@ import lombok.NoArgsConstructor;
 
 @Entity
 @Data
-@Table(name = "Customer")
+@Table(name = "User")
 @NoArgsConstructor
 @AllArgsConstructor
-public class Customer {
+public class User {
 
     @Id
-    @Column(name = "CustomerID")
-    @GeneratedValue
-    private int CustomerID;
+    @Column(name = "UserID")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int UserID;
 
 
     @Column(name = "Username")

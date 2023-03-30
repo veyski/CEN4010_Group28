@@ -7,18 +7,23 @@ import lombok.NoArgsConstructor;
 
 @Entity
 @Data
-@Table(name = "Author")
+@Table(name = "Wishlist")
 @NoArgsConstructor
 @AllArgsConstructor
-public class Author{
+public class Wishlist{
 
     @Id
-    @Column(name = "AuthorID")
+    @Column(name = "ListID")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int AuthorID;
+    private int ListID;
 
-    @Column(name = "AuthorName")
-    private String AuthorName;
+    @Column(name = "UserID")
+    private int UserID;
 
+    @Column(name = "BookID")
+    private int BookID;
+
+    @Column(name = "ListName")
+    private String ListName;
 
 }

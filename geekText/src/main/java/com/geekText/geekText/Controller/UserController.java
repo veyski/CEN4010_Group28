@@ -1,22 +1,22 @@
 package com.geekText.geekText.Controller;
 
-import com.geekText.geekText.Entity.Customer;
-import com.geekText.geekText.Service.CustomerService;
+import com.geekText.geekText.Entity.User;
+import com.geekText.geekText.Service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-public class CustomerController {
+public class UserController {
 
     @Autowired
-    private CustomerService customerService;
+    private UserService userService;
 
 
     @PostMapping("/addCustomer")
-    public Customer postDetails(@RequestBody Customer customer) {
-        return customerService.saveDetails(customer);
+    public User postDetails(@RequestBody User user) {
+        return userService.saveDetails(user);
 
     }
 

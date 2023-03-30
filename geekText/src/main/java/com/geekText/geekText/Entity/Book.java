@@ -13,33 +13,34 @@ import lombok.NoArgsConstructor;
 public class Book {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "BookID")
-    @GeneratedValue
-    private int BookID;
+    private int bookId;
 
+    @Column(name = "AuthorID")
+    private String authorId;
 
-    @Column(name = "Author")
-    private String Author;
+    @Column(name = "CategoryID")
+    private String categoryId;
 
-    @Column(name = "Category")
-    private String Category;
-
-    @Column(name = "Title")
-    private String Title;
+    @Column(name = "book")
+    private String book;
 
     @Column(name = "Description")
-    private String Description;
+    private String description;
 
     @Column(name = "Price")
-    private float Price;
+    private Float price;
 
-    @Column(name = "Publication Date")
-    private String PublishDate;
+    @Column(name = "publishdate")
+    private String publishDate;
 
     @Column(name = "ISBN")
-    private int ISBN;
+    private Integer isbn;
 
-    @Column(name = "Copies Sold")
-    private int SoldCopies;
+    @Column(name = "soldcopies")
+    private int soldCopies;
 
 }
+
+

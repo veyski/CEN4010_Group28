@@ -13,21 +13,21 @@ import lombok.NoArgsConstructor;
 public class CC_Info {
 
     @Id
-    @Column(name = "CC ID")
-    @GeneratedValue
+    @Column(name = "CC_ID")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int CC_ID;
 
 
-    @Column(name = "CC Number")
+    @Column(name = "CC_Number")
     private String CC_Number;
 
-    @Column(name = "Expiration Date")
+    @Column(name = "ExpirationDate")
     private String ExpirationDate;
 
     @Column(name = "CVV")
     private int CVV;
 
-    @Column(name = "Billing Address")
+    @Column(name = "BillingAddress")
     private String BillingAddress;
 
 
