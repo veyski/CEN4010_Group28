@@ -16,18 +16,26 @@ public class BookService {
     @Autowired
     private BookRepo bookRepo;
 
-    public Book saveDetails(Book book){
-
-        return bookRepo.save(book);
-    }
-
     public List<Book> getAllBooks() {
         return bookRepo.findAll();
     }
 
     public List<Book> getTopSellers(int limit) {
-        return bookRepo.findAll(Sort.by(Sort.Direction.DESC, "soldCopies")).stream().limit(limit).collect(Collectors.toList());
+        Sort sort = Sort.by(Sort.Direction.DESC, "salesRank");
+        return bookRepo.findAll(sort).stream().limit(limit).collect(Collectors.toList());
     }
 
-}
+    public Book saveDetails(Book book) {
+        return bookRepo.save(book);
+    }
 
+    public List<Book> getBooksByGenre(String genre) {
+        return bookRepo.findByGenre(genre);
+    }
+    public List<Book> getBooksByRating(int rating) {
+        return bookRepo.findByRating(rating);
+    }
+    public List<Book> getBooksByPublisher(String publisher) {
+        return bookRepo.findByPublisher(publisher);
+    }
+}
