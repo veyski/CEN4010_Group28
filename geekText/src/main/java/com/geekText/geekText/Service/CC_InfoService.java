@@ -1,18 +1,18 @@
 package com.geekText.geekText.Service;
 
-import com.geekText.geekText.Entity.CC_Info;
-import com.geekText.geekText.Repository.CC_InfoRepo;
+import com.CEN4010.CEN4010.Entity.CreditCard;
+import com.CEN4010.CEN4010.Repository.CreditCardRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class CC_InfoService {
-
+public class CreditCardService {
     @Autowired
-    private CC_InfoRepo cc_infoRepo;
+    private CreditCardRepo creditCardRepo;
 
-    public CC_Info saveDetails(CC_Info cc_info){
+    public CreditCard save(CreditCard creditCard){
 
-        return cc_infoRepo.save(cc_info);
+        return creditCardRepo.save(creditCard);
     }
+
 }
