@@ -18,10 +18,14 @@ public class Book {
     private int bookId;
 
     @Column(name = "AuthorID")
-    private String authorId;
+    private int authorId;
 
     @Column(name = "CategoryID")
-    private String categoryId;
+    private int categoryId;
+
+    @ManyToOne
+    @JoinColumn (name = "PublisherID")
+    private Publisher publisher;
 
     @Column(name = "book")
     private String book;
@@ -41,6 +45,8 @@ public class Book {
     @Column(name = "soldcopies")
     private int soldCopies;
 
+    @Column(name = "rating")
+    private double rating;
 }
 
 

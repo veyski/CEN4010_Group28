@@ -29,13 +29,4 @@ public class BookService {
         return bookRepo.save(book);
     }
 
-    public List<Book> getBooksByGenre(String genre) {
-        return bookRepo.findByGenre(genre);
-    }
-    public List<Book> getBooksByRating(int rating) {
-        return bookRepo.findByRating(rating);
-    }
-    public List<Book> getBooksByPublisher(String publisher) {
-        return bookRepo.findByPublisher(publisher);
-    }
 }

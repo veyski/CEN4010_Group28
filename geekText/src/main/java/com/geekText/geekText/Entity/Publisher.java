@@ -1,5 +1,6 @@
 package com.geekText.geekText.Entity;
 
+import java.util.*;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -15,10 +16,13 @@ public class Publisher{
     @Id
     @Column(name = "PublisherID")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int PublisherID;
+    private int publisherId;
 
-    @Column(name = "PublisherName")
-    private String PublisherName;
+    @Column(name = "Publisher")
+    private String publisher;
+
+    @OneToMany(mappedBy = "publisher")
+    private List<Book> books;
 
 
 }

@@ -32,30 +32,4 @@ public class BookController {
         return bookService.getTopSellers(10);
     }
 
-    @GetMapping("/getBooksByGenre/{genre}")
-    public List<Book> getBooksByGenre(@PathVariable String genre) {
-        return bookService.getBooksByGenre(genre);
-    }
-
-    @GetMapping("/getBooksByRating/{rating}")
-    public List<Book> getBooksByRating(@PathVariable int rating) {
-        return bookService.getBooksByRating(rating);
-    }
-
-    @PutMapping("/discountBooks/{publisher}/{discount}")
-    public ResponseEntity<?> discountBooksByPublisher(@PathVariable String publisher, @PathVariable double discount) {
-        List<Book> books = bookService.getBooksByPublisher(publisher);
-
-        if (books.isEmpty()) {
-            return ResponseEntity.notFound().build();
-        }
-
-        for (Book book : books) {
-            double newPrice = book.getPrice() * (1 - (discount / 100));
-            book.setPrice((float) newPrice);
-            bookService.saveDetails(book);
-        }
-
-        return ResponseEntity.ok().build();
-    }
 }
