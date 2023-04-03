@@ -7,28 +7,25 @@ import lombok.NoArgsConstructor;
 
 @Entity
 @Data
-@Table(name = "CC_Info")
+@Table(name = "credit_card")
+
 @NoArgsConstructor
 @AllArgsConstructor
-public class CC_Info {
-
+public class CreditCard {
     @Id
-    @Column(name = "CC_ID")
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int CC_ID;
+    @Column(name = "credit_card_number")
+    private int credit_card_number;
+
+    @Column(name = "bank_name")
+    private String bank_name;
+
+    @Column(name = "Username")
+    private String username;
 
 
-    @Column(name = "CC_Number")
-    private String CC_Number;
-
-    @Column(name = "ExpirationDate")
-    private String ExpirationDate;
-
-    @Column(name = "CVV")
-    private int CVV;
-
-    @Column(name = "BillingAddress")
-    private String BillingAddress;
+    /*@OneToOne(mappedBy = "creditCard")
+    private User user;
+     */
 
 
 }
