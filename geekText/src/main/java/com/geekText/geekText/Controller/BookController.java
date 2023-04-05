@@ -32,4 +32,8 @@ public class BookController {
         return bookService.getTopSellers(10);
     }
 
+    @GetMapping("/getBooksByCategory/{Category}")
+    public List<Book> getBooksByCategory(@PathVariable String Category) {
+        return bookService.getBooksByCategory(Category);
+    }
 }

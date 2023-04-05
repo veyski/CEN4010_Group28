@@ -21,7 +21,7 @@ public class BookService {
     }
 
     public List<Book> getTopSellers(int limit) {
-        Sort sort = Sort.by(Sort.Direction.DESC, "salesRank");
+        Sort sort = Sort.by(Sort.Direction.DESC, "soldCopies");
         return bookRepo.findAll(sort).stream().limit(limit).collect(Collectors.toList());
     }
 
@@ -29,4 +29,7 @@ public class BookService {
         return bookRepo.save(book);
     }
 
+    public List<Book> getBooksByCategory(String Category) {
+        return bookRepo.findByCategoryName(Category);
+    }
 }
