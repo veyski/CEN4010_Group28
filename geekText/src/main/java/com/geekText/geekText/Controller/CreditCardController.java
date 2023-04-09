@@ -1,16 +1,13 @@
 package com.geekText.geekText.Controller;
 
-import com.CEN4010.CEN4010.Entity.CreditCard;
-import com.CEN4010.CEN4010.Entity.User;
-import com.CEN4010.CEN4010.Service.CreditCardService;
-import com.CEN4010.CEN4010.Service.UserService;
+import com.geekText.geekText.Entity.CreditCard;
+import com.geekText.geekText.Entity.User;
+import com.geekText.geekText.Service.CreditCardService;
+import com.geekText.geekText.Service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
-
-import java.util.List;
 
 @RestController
 public class CreditCardController {

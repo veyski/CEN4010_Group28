@@ -45,8 +45,9 @@ public class Book {
     @Column(name = "soldcopies")
     private int soldCopies;
 
-    @Column(name = "rating")
-    private Integer rating;
+    @Column(name = "averagerating")
+    private double averagerating;
+
 }
 
 

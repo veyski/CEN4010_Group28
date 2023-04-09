@@ -1,7 +1,7 @@
 package com.geekText.geekText.Service;
 
-import com.CEN4010.CEN4010.Entity.User;
-import com.CEN4010.CEN4010.Repository.UserRepo;
+import com.geekText.geekText.Entity.User;
+import com.geekText.geekText.Repository.UserRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -23,9 +23,9 @@ public class UserService {
         return userRepo.findAll();
     }
 
-    public Optional<User> findByUsername(String username)
+    /* public Optional<User> findByUsername(String username)
     {
         return userRepo.findByUsername(username);
     }
-
+    Not compiling */
 }

@@ -1,9 +1,9 @@
 package com.geekText.geekText.Controller;
 
-import com.CEN4010.CEN4010.Entity.CreditCard;
-import com.CEN4010.CEN4010.Entity.User;
-import com.CEN4010.CEN4010.Service.CreditCardService;
-import com.CEN4010.CEN4010.Service.UserService;
+import com.geekText.geekText.Entity.CreditCard;
+import com.geekText.geekText.Entity.User;
+import com.geekText.geekText.Service.CreditCardService;
+import com.geekText.geekText.Service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -26,6 +26,9 @@ public class UserController {
         return userService.getDetails();
     }
 
-    @GetMapping("/getUser/{username}")
-    public Optional<User> findByUsername(@PathVariable("username") String username, User user)
-    {
+   /* @GetMapping("/getUser/{username}")
+    public Optional<User> findByUsername(@PathVariable("username") String username, User user) {
+    }
+    Not compiling
+    */
+    }
