@@ -26,5 +26,7 @@ public class Publisher{
     @JsonIgnore
     private List<Book> books;
 
-
+    public int getId() {
+        return publisherId;
+    }
 }

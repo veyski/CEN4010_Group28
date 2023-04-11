@@ -5,6 +5,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.math.BigInteger;
+
 @Entity
 @Data
 @Table(name = "Book")
@@ -40,7 +42,7 @@ public class Book {
     private String publishDate;
 
     @Column(name = "ISBN")
-    private Integer isbn;
+    private BigInteger isbn;
 
     @Column(name = "soldcopies")
     private int soldCopies;

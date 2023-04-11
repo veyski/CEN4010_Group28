@@ -16,7 +16,7 @@ public class PublisherController {
     @Autowired
     private PublisherService publisherService;
 
-    // addAuthor adds an object to the publisher table
+
     @PostMapping("/addPublisher")
     public Publisher postDetails(@RequestBody Publisher publisher) {
 
@@ -24,7 +24,7 @@ public class PublisherController {
 
     }
 
-    // getAuthor returns a list of objects in the publisher table
+
     @GetMapping("/getPublishers")
     public List<Publisher> getAllPublishers() {
         return publisherService.getAllPublishers();
