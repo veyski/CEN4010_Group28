@@ -36,4 +36,5 @@ public class BookController {
     public List<Book> getBooksByCategory(@PathVariable String Category) {
         return bookService.getBooksByCategory(Category);
     }
+
 }

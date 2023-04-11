@@ -23,9 +23,9 @@ public class UserService {
         return userRepo.findAll();
     }
 
-    /* public Optional<User> findByUsername(String username)
+  /*  public Optional<User> findByUsername(String username)
     {
         return userRepo.findByUsername(username);
     }
-    Not compiling */
+        NOT COMPILING */
 }
