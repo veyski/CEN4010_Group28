@@ -13,8 +13,11 @@ import com.geekText.geekText.Repository.BookRepo;
 @Service
 public class BookService {
 
-    @Autowired
-    private BookRepo bookRepo;
+    private final BookRepo bookRepo;
+
+    public BookService(BookRepo bookRepo) {
+        this.bookRepo = bookRepo;
+    }
 
     public List<Book> getAllBooks() {
         return bookRepo.findAll();
@@ -33,6 +36,8 @@ public class BookService {
         return bookRepo.findByCategoryName(Category);
     }
 
-
+    public List<Book> getBooksByRating(double rating) {
+        return bookRepo.findByRatingGreaterThanEqual(rating);
+    }
 
 }

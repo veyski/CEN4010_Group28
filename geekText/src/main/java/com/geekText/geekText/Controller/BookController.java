@@ -13,8 +13,13 @@ import java.util.*;
 @RestController
 public class BookController {
 
+    private final BookService bookService;
+
     @Autowired
-    private BookService bookService;
+    public BookController(BookService bookService) {
+        this.bookService = bookService;
+    }
+
 
 
     @PostMapping("/addBook")
@@ -36,5 +41,11 @@ public class BookController {
     public List<Book> getBooksByCategory(@PathVariable String Category) {
         return bookService.getBooksByCategory(Category);
     }
+
+    @GetMapping("/getBooksByRating/{rating}")
+    public List<Book> getBooksByRating(@PathVariable Double rating) {
+        return bookService.getBooksByRating(rating);
+    }
+
 
 }
