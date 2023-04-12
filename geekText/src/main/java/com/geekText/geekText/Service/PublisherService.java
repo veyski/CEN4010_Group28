@@ -1,6 +1,4 @@
 package com.geekText.geekText.Service;
-import jakarta.persistence.EntityNotFoundException;
-import com.geekText.geekText.Entity.Book;
 import com.geekText.geekText.Entity.Publisher;
 import com.geekText.geekText.Repository.BookRepo;
 import com.geekText.geekText.Repository.PublisherRepo;
@@ -27,9 +25,5 @@ public class PublisherService {
         return publisherRepo.save(publisher);
     }
 
-    public Publisher getPublisherByName(String publisher) {
-        return publisherRepo.findByPublisher(publisher)
-                .orElseThrow(() -> new EntityNotFoundException("Publisher not found with name: " + publisher));
-    }
 
 }

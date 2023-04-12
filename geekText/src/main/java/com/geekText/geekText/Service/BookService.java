@@ -3,7 +3,6 @@ package com.geekText.geekText.Service;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
@@ -33,7 +32,11 @@ public class BookService {
     }
 
     public List<Book> getBooksByCategory(String Category) {
-        return bookRepo.findByCategoryName(Category);
+        return bookRepo.findByCategory(Category);
+    }
+
+    public List<Book> getBooksByPublisher(String publisher) {
+        return bookRepo.findByPublisher(publisher);
     }
 
     public List<Book> getBooksByRating(double rating) {

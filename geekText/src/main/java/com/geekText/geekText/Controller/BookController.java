@@ -5,9 +5,11 @@ import com.geekText.geekText.Service.PublisherService;
 import com.geekText.geekText.Service.BookService;
 import com.geekText.geekText.Repository.BookRepo;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.lang.constant.Constable;
+import java.text.DecimalFormat;
+import java.math.RoundingMode;
 import java.util.*;
 
 @RestController
@@ -45,9 +47,27 @@ public class BookController {
         return bookService.getBooksByCategory(Category);
     }
 
+    @GetMapping("/getBooksByPublisher/{publisher}")
+    public List<Book> getBooksByPublisher(@PathVariable String publisher) {
+        return bookService.getBooksByPublisher(publisher);
+    }
+
     @GetMapping("/getBooksByRating/{rating}")
     public List<Book> getBooksByRating(@PathVariable Double rating) {
         return bookService.getBooksByRating(rating);
     }
 
+    @PatchMapping("/publishers/{publisher}/discount")
+    public Constable discountBooksByPublisher(@PathVariable String publisher, @RequestParam("discount") float discount) {
+        List<Book> books = bookService.getBooksByPublisher(publisher);
+        DecimalFormat df = new DecimalFormat("#.##");
+        df.setRoundingMode(RoundingMode.DOWN);
+        for (Book book : books) {
+            float newPrice = book.getPrice() * (1 - (discount / 100));
+            String formattedPrice = df.format(newPrice);
+            book.setPrice(Float.parseFloat(formattedPrice));
+            bookService.saveDetails(book);
+        }
+        return "Successfully discounted " + publisher + " books by " + discount + "%.";
+    }
 }

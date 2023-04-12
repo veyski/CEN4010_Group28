@@ -22,11 +22,8 @@ public class Publisher{
     @Column(name = "Publisher")
     private String publisher;
 
-    @OneToMany(mappedBy = "publisher", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "publisherId", fetch = FetchType.LAZY)
     @JsonIgnore
     private List<Book> books;
 
-    public int getId() {
-        return publisherId;
-    }
 }
