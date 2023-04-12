@@ -27,7 +27,7 @@ public class Book {
 
     @ManyToOne
     @JoinColumn (name = "PublisherID")
-    private Publisher publisher;
+    private Publisher publisherId;
 
     @Column(name = "book")
     private String book;

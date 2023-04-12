@@ -19,6 +19,5 @@ public interface BookRepo extends JpaRepository<Book, Long> {
     @Query("SELECT b FROM Book b WHERE b.rating >= :rating")
     List<Book> findByRatingGreaterThanEqual(@Param("rating") Double rating);
 
-    List<Book> findByPublisherId(Long id);
 }
 

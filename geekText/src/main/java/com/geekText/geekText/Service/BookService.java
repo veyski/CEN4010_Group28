@@ -39,8 +39,4 @@ public class BookService {
     public List<Book> getBooksByRating(double rating) {
         return bookRepo.findByRatingGreaterThanEqual(rating);
     }
-
-    public List<Book> getBooksByPublisherId(Long publisherId) {
-        return bookRepo.findByPublisherId(publisherId);
-    }
 }
