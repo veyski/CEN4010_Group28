@@ -1,0 +1,202 @@
+import com.example.ShoppingCart.entity.Book;
+import com.example.ShoppingCart.service.ShoppingCartService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+
+@RestController
+@RequestMapping("/ShoppingCart")
+public class ShoppingCartController {
+
+    @Autowired
+    private ShoppingCartService shoppingCartService;
+
+
+    @GetMapping("/Subtotal")
+    public Double getSubtotal(@RequestParam("userId") Long userId) {
+        return shoppingCartService.getSubtotal(userId);
+    }
+
+
+    @PostMapping("/AddBook")
+    public void addBook(@RequestParam("userId") Long userId,
+                        @RequestParam("bookId") Long bookId) {
+        shoppingCartService.addBook(userId, bookId);
+    }
+
+
+    @GetMapping("/Books")
+    public List<Book> getBooksInCart(@RequestParam("userId") Long userId) {
+        return shoppingCartService.getBooksInCart(userId);
+    }
+
+
+    @DeleteMapping("/RemoveBook")
+    public void removeBook(@RequestParam("userId") Long userId,
+                           @RequestParam("bookId") Long bookId) {
+        shoppingCartService.removeBook(userId, bookId);
+    }
+
+}
+
+package com.geekText.geekText.Entity;
+
+import javax.persistence.*;
+
+@Entity
+@Table(name = "Shopping_Cart")
+public class ShoppingCart {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    @ManyToOne
+    @JoinColumn(name = "user_id", nullable = false)
+    private User user;
+
+    @ManyToOne
+    @JoinColumn(name = "book_id", nullable = false)
+    private Book book;
+
+    @Column(name = "quantity")
+    private int quantity;
+
+    public ShoppingCart() {
+    }
+
+    public ShoppingCart(User user, Book book, int quantity) {
+        this.user = user;
+        this.book = book;
+        this.quantity = quantity;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public Book getBook() {
+        return book;
+    }
+
+    public void setBook(Book book) {
+        this.book = book;
+    }
+
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
+    }
+}
+
+
+
+package com.geekText.geekText.Repository;
+
+import com.geekText.geekText.Entity.ShoppingCart;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+
+@Repository
+public interface ShoppingCartRepo extends JpaRepository<ShoppingCart, Long> {
+
+}
+
+
+@Service
+public class ShoppingCartService {
+
+    @Autowired
+    private ShoppingCartRepository shoppingCartRepository;
+
+    // Method to add a book to the user's shopping cart
+    public void addBookToCart(Long userId, Long bookId) {
+        ShoppingCart cart = shoppingCartRepository.findByUserId(userId);
+        if (cart == null) {
+            cart = new ShoppingCart();
+            cart.setUserId(userId);
+        }
+
+        // Check if the book is already in the cart
+        boolean bookExists = false;
+        for (ShoppingCartItem item : cart.getItems()) {
+            if (item.getBookId().equals(bookId)) {
+                item.setQuantity(item.getQuantity() + 1);
+                bookExists = true;
+                break;
+            }
+        }
+
+        // If the book is not in the cart, add it as a new item
+        if (!bookExists) {
+            ShoppingCartItem newItem = new ShoppingCartItem();
+            newItem.setBookId(bookId);
+            newItem.setQuantity(1);
+            cart.getItems().add(newItem);
+        }
+
+        shoppingCartRepository.save(cart);
+    }
+
+    // Method to retrieve the subtotal price of all items in the user's shopping cart
+    public double getCartSubtotal(Long userId) {
+        ShoppingCart cart = shoppingCartRepository.findByUserId(userId);
+        double subtotal = 0.0;
+        if (cart != null) {
+            for (ShoppingCartItem item : cart.getItems()) {
+                Book book = item.getBook();
+                if (book != null) {
+                    subtotal += book.getPrice() * item.getQuantity();
+                }
+            }
+        }
+        return subtotal;
+    }
+
+    // Method to retrieve the list of books in the user's shopping cart
+    public List<Book> getCartItems(Long userId) {
+        List<Book> books = new ArrayList<>();
+        ShoppingCart cart = shoppingCartRepository.findByUserId(userId);
+        if (cart != null) {
+            for (ShoppingCartItem item : cart.getItems()) {
+                Book book = item.getBook();
+                if (book != null) {
+                    books.add(book);
+                }
+            }
+        }
+        return books;
+    }
+
+    // Method to delete a book from the user's shopping cart
+    public void deleteBookFromCart(Long userId, Long bookId) {
+        ShoppingCart cart = shoppingCartRepository.findByUserId(userId);
+        if (cart != null) {
+            Iterator<ShoppingCartItem> iter = cart.getItems().iterator();
+            while (iter.hasNext()) {
+                ShoppingCartItem item = iter.next();
+                if (item.getBookId().equals(bookId)) {
+                    iter.remove();
+                    break;
+                }
+            }
+            shoppingCartRepository.save(cart);
+        }
+    }
+}
